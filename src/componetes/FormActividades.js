@@ -115,7 +115,7 @@ return(
          <Container className="content" style={{ width: "70%", height: "auto", alignItems: "center", display: "flex", justifyContent: "center" }}>
         <div className="row">
           <div className="col-sm-12">
-         
+         <h1>Evidencia Volanteo Calaverita</h1>
          <form className="row g-3" onSubmit={handleSubmit}>
 
               <div className="col-md-3">
