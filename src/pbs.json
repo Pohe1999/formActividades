@@ -1,0 +1,31 @@
+[{
+    "poligono": 1,
+    "secciones": [
+        {"seccion": 4194, "ubts":[
+            {"ubt":"4194-01", "pb":"irma"},
+            {"ubt":"4194-02", "pb":"maria"},
+            {"ubt":"4194-03", "pb":"luisa"}
+                        ] },
+        {"seccion": 4195, "ubts":[
+            {"ubt":"4195-01", "pb":"irma"},
+            {"ubt":"4195-02", "pb":"maria"},
+            {"ubt":"4195-03", "pb":"luisa"}
+                        ] }
+    ]
+},
+{
+    "poligono": 2,
+    "secciones": [
+        {"seccion": 4208, "ubts":[
+            {"ubt":"4208-01", "pb":"irma"},
+            {"ubt":"4208-02", "pb":"maria"},
+            {"ubt":"4208-03", "pb":"luisa"}
+                        ] },
+        {"seccion": 4215, "ubts":[
+            {"ubt":"4215-01", "pb":"irma"},
+            {"ubt":"4215-02", "pb":"maria"},
+            {"ubt":"4215-03", "pb":"luisa"}
+                        ] }
+    ]
+}
+]
