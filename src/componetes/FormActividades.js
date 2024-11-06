@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, Container, Form } from "react-bootstrap";
 import pbsdata from './../PB.json';
-
+import '../estilos/estilos.css'
 
 function FormActividades()
 {
@@ -97,8 +97,18 @@ const handleSubmit=(e)=>{
     .then(data => {
       console.log(data);
       alert(data.msg);
+      
+      setpoligono('');
+      setState([]);
+      setStateid('');
+      setUbtSelect('');
+      setUbt([]);
+      setPb([]);
+      setFile(null);
     })
     .catch(err => console.log(err));
+
+    
 };
 
 // alert(pb);
@@ -112,17 +122,17 @@ console.log(poligonos);
 // const secciones = [...new Set(pbsdata.filter((SECC)=>(SECC.POLIGONO) =="9" ).map((pol)=>pol.SECCION))];
 return(
 <React.Fragment>
-         <Container className="content" style={{ width: "70%", height: "auto", alignItems: "center", display: "flex", justifyContent: "center" }}>
+         <Container className="content" style={{ width: "auto", height: "auto", alignItems: "center", display: "flex", justifyContent: "center" }}>
         <div className="row">
           <div className="col-sm-12">
          <h1>Evidencia Volanteo Calaverita</h1>
          <form className="row g-3" onSubmit={handleSubmit}>
 
               <div className="col-md-3">
-                <label  className="form-label"> Poligono</label>            
+                <label  className="form-label"> Polígono</label>            
                     <div className="text-dark"> 
-                       <select name='poligono' className='form-control' onChange={(e)=>handlepoligono(e)}>
-                        <option value="">--Selecciona el Poligono--</option>
+                       <select name='poligono' className='form-control' onChange={(e)=>handlepoligono(e)} required>
+                        <option value="">--Selecciona el Polígono--</option>
                         {
                         // const poligonos = [...new Set(jsonData.map((pol)=>pol.POLIGONO))]
                         poligonos.map( (getpol)=>(
@@ -136,10 +146,10 @@ return(
                     </div>
                     </div>
                     <div className="col-md-3">
-                <label  className="form-label"> Seccion</label>            
+                <label  className="form-label"> Sección</label>            
                     <div className="text-dark"> 
-                    <select name='seccion' className='form-control' onChange={(e)=>handlestate(e)}>
-                        <option value="">--Seleccione la seccion-</option>
+                    <select name='seccion' className='form-control' onChange={(e)=>handlestate(e)} required>
+                        <option value="">--Seleccione la sección-</option>
                         {
                           state.map((getstate)=>(
                             <option value={getstate.SECCION} >{ getstate }</option>
@@ -154,7 +164,7 @@ return(
                     <div className="col-md-3">
                 <label  className="form-label"> UBT</label>            
                     <div className="text-dark"> 
-                    <select name='ubt' className='form-control' onChange={(e)=>handleUbt(e)}>
+                    <select name='ubt' className='form-control' onChange={(e)=>handleUbt(e)} required>
                         <option value="">--Seleccione la UBT-</option>
                         {
                           ubt.map((getubt)=>(
@@ -173,7 +183,7 @@ return(
 
                     <div className="text-dark"> 
                         <label>Subir evidencia fotografica</label><br/>
-                        <input type="file" onChange={handleChange} accept="image/*"/>
+                        <input type="file" onChange={handleChange} accept="image/*" required/>
                         <img src={file} style={{ height: imageHeight }} onLoad={() => setImageHeight(200)}/>
                         
                     </div>
