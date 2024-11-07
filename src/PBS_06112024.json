@@ -3481,6 +3481,30 @@
   },
   {
     "POLIGONO": 5,
+    "SECCION": 6264,
+    "UBT": "6264-01",
+    "NOMBRE DE PB": "VIRGINIA VARGAS HERNANDEZ"
+  },
+  {
+    "POLIGONO": 5,
+    "SECCION": 6264,
+    "UBT": "6264-02",
+    "NOMBRE DE PB": "LILIANA LANDEROS VARGAS"
+  },
+  {
+    "POLIGONO": 5,
+    "SECCION": 6264,
+    "UBT": "6264-03",
+    "NOMBRE DE PB": "TERESA AGUILAR CAMPOS"
+  },
+  {
+    "POLIGONO": 5,
+    "SECCION": 6264,
+    "UBT": "6264-04",
+    "NOMBRE DE PB": "DAYANNE ALELY GOMEZ HERRERA"
+  },
+  {
+    "POLIGONO": 5,
     "SECCION": 6857,
     "UBT": "6857-02",
     "NOMBRE DE PB": "NATALIA SOLIS HERNANDEZ"
@@ -4162,30 +4186,6 @@
     "SECCION": 4245,
     "UBT": "4245-05",
     "NOMBRE DE PB": "DIANA HERNANDEZ ZAMORA"
-  },
-  {
-    "POLIGONO": 6,
-    "SECCION": 6264,
-    "UBT": "6264-01",
-    "NOMBRE DE PB": "VIRGINIA VARGAS HERNANDEZ"
-  },
-  {
-    "POLIGONO": 6,
-    "SECCION": 6264,
-    "UBT": "6264-02",
-    "NOMBRE DE PB": "LILIANA LANDEROS VARGAS"
-  },
-  {
-    "POLIGONO": 6,
-    "SECCION": 6264,
-    "UBT": "6264-03",
-    "NOMBRE DE PB": "TERESA AGUILAR CAMPOS"
-  },
-  {
-    "POLIGONO": 6,
-    "SECCION": 6264,
-    "UBT": "6264-04",
-    "NOMBRE DE PB": "DAYANNE ALELY GOMEZ HERRERA"
   },
   {
     "POLIGONO": 6,
