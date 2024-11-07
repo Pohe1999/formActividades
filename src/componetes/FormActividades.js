@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Button, Container, Form } from "react-bootstrap";
 import pbsdata from './../PBS_06112024.json';
 import '../estilos/estilos.css'
+import supabase from '../supabaseClient';
 
 function FormActividades()
 {
@@ -14,8 +15,9 @@ function FormActividades()
  const [file, setFile] = useState(null);
  const [imageHeight, setImageHeight] = useState(20);
  const formRef = useRef(null);
-  
-
+ const [status, setStatus] = useState('');
+ const [formData, setFormData] = useState({ POLIGONO: '', SECCION: '', UBT: '', PB: '', IMAGEN: '' }); 
+ 
   const handlepoligono=(e)=>{
     const getpoligono= e.target.value;
     const getStatedata= pbsdata.filter((SECC)=>(SECC.POLIGONO) == getpoligono );
@@ -72,7 +74,7 @@ function FormActividades()
   }
 
 
-const handleSubmit=(e)=>{
+const handleSubmit= async(e)=>{
   e.preventDefault();
   
  
@@ -82,22 +84,40 @@ const handleSubmit=(e)=>{
   //                   "PB": pb};
   const formData = new FormData();
   let now = new Date();
-  formData.append('HORA', now);
-  formData.append('POLIGONO', poligono);
-  formData.append('SECCION', stateid);
-  formData.append('UBT', ubtselect);
-  formData.append('PB', pb);
-  formData.append('IMAGEN', file);
+  // formData.append('HORA', now);
+  formData.POLIGONO=poligono;
+  formData.SECCION=stateid;
+  formData.UBT=ubtselect;
+  formData.PB=pb;
+  formData.IMAGEN= file;
   
   // console.log(formData);
-  fetch("https://script.google.com/macros/s/AKfycbxTLJYVYkfUBSbvQ7OMq3nCTGpgarsvsxFkQ_dXJTs2WMefwa4LkytqSCJV4vR4LZ1DiA/exec", {
-    method: 'POST',
-    body: formData,
-  }).then(res => res.json())
-    .then(data => {
-      console.log(data);
-      alert(data.msg);
+  // fetch("https://script.google.com/macros/s/AKfycbxTLJYVYkfUBSbvQ7OMq3nCTGpgarsvsxFkQ_dXJTs2WMefwa4LkytqSCJV4vR4LZ1DiA/exec", {
+  //   method: 'POST',
+  //   body: formData,
+  // }).then(res => res.json())
+  //   .then(data => {
+  //     console.log(data);
+  //     alert(data.msg);
       
+  //     setpoligono('');
+  //     setState([]);
+  //     setStateid('');
+  //     setUbtSelect('');
+  //     setUbt([]);
+  //     setPb([]);
+  //     setFile(null);
+  //   })
+  //   .catch(err => console.log(err));
+  try {
+    const { data, error } = await supabase
+      .from('CalaveritaNov2024') // nombre de la tabla en Supabase
+      .insert([formData]); // envía el objeto con los datos del formulario
+
+    if (error) throw error;
+
+    setStatus('Datos enviados con éxito!');
+
       setpoligono('');
       setState([]);
       setStateid('');
@@ -105,8 +125,13 @@ const handleSubmit=(e)=>{
       setUbt([]);
       setPb([]);
       setFile(null);
-    })
-    .catch(err => console.log(err));
+    //setFormData({ name: '', email: '', message: '' }); // Limpiar el formulario
+
+  } catch (error) {
+    console.error('Error al enviar los datos:', error.message);
+    setStatus('Error al enviar los datos');
+  }
+
 
     
 };
@@ -197,6 +222,7 @@ return(
                     </div>
 
         </form>
+        {status && <p>{status}</p>}
         </div>
         </div>
         </Container>
