@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Button, Container, Form } from "react-bootstrap";
-import pbsdata from './../PB.json';
+import pbsdata from './../PBS_06112024.json';
 import '../estilos/estilos.css'
 
 function FormActividades()
