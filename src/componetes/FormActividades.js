@@ -164,7 +164,7 @@ function FormActividades() {
               required
               className='w-full p-3 mt-2 bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500'
             >
-              <option value="">--Seleccione el UBT--</option>
+              <option value="">--Seleccione el UBT---</option>
               {ubt.map((getUbt) => (
                 <option value={getUbt} key={getUbt}>
                   {getUbt}
