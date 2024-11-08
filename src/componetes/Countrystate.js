@@ -1,86 +1,81 @@
-import React, { useState } from 'react';
-import { Container } from "react-bootstrap";
-import countrydata from './../countries.json';
+import React, { useState } from 'react';  // Importamos React y useState para manejar el estado
+import countrydata from './../countries.json';  // Importamos los datos de los países desde un archivo JSON
 
+// Componente principal que maneja el formulario de selección de país y estado
+function Countrystate() {
+  // Definimos el estado para manejar el país seleccionado, los estados del país y el estado seleccionado
+  const [countryid, setCountryid] = useState('');  // Guardará el ID del país seleccionado
+  const [state, setState] = useState([]);  // Guardará la lista de estados del país seleccionado
+  const [stateid, setStateid] = useState('');  // Guardará el ID del estado seleccionado
 
-function Countrystate()
-{
- const[countryid, setCountryid]=useState('');
- const[state, setState]=useState([]);
- const[stateid, setStateid]= useState('');
-
-  const handlecounty=(e)=>{
-    const getcountryId= e.target.value;
-    const getStatedata= countrydata.find(country=>country.country_id===getcountryId).states;
+  // Función que se ejecuta cuando se selecciona un país
+  const handlecounty = (e) => {
+    const getcountryId = e.target.value;  // Obtenemos el valor del país seleccionado
+    // Buscamos el país en el JSON y obtenemos sus estados
+    const getStatedata = countrydata.find(country => country.country_id === getcountryId).states;
+    // Actualizamos el estado con los estados del país seleccionado
     setState(getStatedata);
+    // Actualizamos el ID del país seleccionado
     setCountryid(getcountryId);
-  //console.log(getcountryId);
-  }
+  };
 
-  const handlestate = (e)=>{
-    const stateid= e.target.value;
-    //console.log(stateid);
+  // Función que se ejecuta cuando se selecciona un estado
+  const handlestate = (e) => {
+    const stateid = e.target.value;  // Obtenemos el valor del estado seleccionado
+    // Actualizamos el estado con el ID del estado seleccionado
     setStateid(stateid);
+  };
 
-  }
-const handleSubmit=(e)=>{
-e.preventDefault();
-alert("Get Country id"+countryid+ " And "+ stateid);
-}
+  // Función que se ejecuta cuando se envía el formulario
+  const handleSubmit = (e) => {
+    e.preventDefault();  // Prevenimos el comportamiento por defecto de enviar el formulario (recargar la página)
+    // Mostramos una alerta con el país y el estado seleccionados
+    alert("Get Country id: " + countryid + " And " + stateid);
+  };
 
-return(<React.Fragment>
-         <Container className="content">
-        <div className="row">
-          <div className="col-sm-12">
-         <h3 className='mt-3'>Select Country and State from JSON file in React js</h3>
-         <form className="row g-3" onSubmit={handleSubmit}>
+  return (
+    <React.Fragment>
+      <div>
+        <h3 className=''>Select Country and State from JSON file in React js</h3>
+        {/* El formulario que contiene los selects para el país y el estado */}
+        <form onSubmit={handleSubmit}>
+          {/* Select para elegir el país */}
+          <div>
+            <label>Country</label>
+            <select name='country' onChange={(e) => handlecounty(e)}>
+              <option value="">--Select Country--</option>
+              {/* Recorremos los datos de países y mostramos un option para cada uno */}
+              {
+                countrydata.map((getcountry, index) => (
+                  <option value={getcountry.country_id} key={index}>{getcountry.country_name}</option>
+                ))
+              }
+            </select>
+          </div>
 
-              <div className="col-md-3">
-                <label  className="form-label"> Country</label>            
-                    <div className="text-dark"> 
-                       <select name='country' className='form-control' onChange={(e)=>handlecounty(e)}>
-                        <option value="">--Select Country--</option>
-                        {
-                        countrydata.map( (getcountry,index)=>(
-                          <option value={getcountry.country_id} key={index}>{getcountry.country_name}</option> 
-                        ))
+          {/* Select para elegir el estado */}
+          <div>
+            <label>State</label>
+            <select name='states' onChange={(e) => handlestate(e)}>
+              <option value="">--Select State--</option>
+              {/* Recorremos los estados y mostramos un option para cada uno */}
+              {
+                state.map((getstate, index) => (
+                  <option value={getstate.state_id} key={index}>{getstate.state_name}</option>
+                ))
+              }
+            </select>
+          </div>
 
-                        }
-                  
-                    
-                        </select>           
-                    </div>
-                    </div>
-                    <div className="col-md-3">
-                <label  className="form-label"> State</label>            
-                    <div className="text-dark"> 
-                    <select name='states' className='form-control' onChange={(e)=>handlestate(e)}>
-                        <option value="">--Select State--</option>
-                        {
-                          state.map((getstate, index)=>(
-                            <option value={getstate.state_id} key={index}>{ getstate.state_name }</option>
-                          ))
-                        }
-                       
-                       
-                        </select>          
-                    </div>
-                    </div>
-
-            
-                    <div className="col-md-2" style={{padding:'9px'}}>
-                      <label  className="form-label"> </label>            
-                    <div className="text-dark"> 
-                      <button name='submit' className='btn btn-success'>Submit</button>
-                     </div>
-                    </div>
+          {/* Botón de envío del formulario */}
+          <div>
+            <button type="submit">Submit</button>
+          </div>
 
         </form>
-        </div>
-        </div>
-        </Container>
-       
-    </React.Fragment>);
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default Countrystate;
